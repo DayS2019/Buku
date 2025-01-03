@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website koleksi buku oleh Dayat Suryana">
+  <meta name="keywords" content="Buku, Dayat Suryana, Buku Digital, Google Play Books">
+  <meta name="google-site-verification" content="0Mf5wooPMiQtupRIcKylFqG3l1S1o77OrHVbVjDRLdU" />
+  <title>Daftar Buku Dayat Suryana</title>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9040296564966124"
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Buku Dayat Suryana",
+      "url": "https://www.dayatsuryana.my.id",
+      "description": "Website koleksi buku oleh Dayat Suryana, temukan buku digital yang dapat dibaca di Google Play.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dayat Suryana"
+      }
+    }
+    </script>    
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .book-container { display: flex; flex-wrap: wrap; justify-content: space-around; padding: 20px; }
+    .book { margin: 10px; text-align: center; width: 150px; }
+    .book img { width: 100px; height: 150px; object-fit: cover; }
+    .book h3 { font-size: 16px; margin: 5px 0; }
+    .book p { font-size: 14px; margin: 5px 0; }
+    .book a { color: #007bff; text-decoration: none; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="text-align: center; padding: 20px;">Koleksi Buku Dayat Suryana</h1>
+  </header>
+  <main>
+    <section class="book-container" id="book-list">
+      <!-- Buku akan dimuat di sini -->
+    </section>
+  </main>
+  <script>
+    // Inisialisasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyD3a8puxo5pxC3l4q_h7kXd8lzhLK3xvGQ",
+      authDomain: "website-dayat-suryana-19374.firebaseapp.com",
+      projectId: "website-dayat-suryana-19374",
+      storageBucket: "website-dayat-suryana-19374.firebasestorage.app",
+      messagingSenderId: "168534231490",
+      appId: "G-WK49YXTTHJ"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);
+
+    // Fungsi untuk mengambil dan menampilkan buku
+    async function fetchBooks() {
+      const booksCollection = db.collection("books");
+      const snapshot = await booksCollection.get();
+      const books = snapshot.docs.map(doc => doc.data());
+      displayBooks(books);
+    }
+
+    // Fungsi untuk menampilkan buku di halaman
+    function displayBooks(books) {
+      const bookListContainer = document.getElementById('book-list');
+      bookListContainer.innerHTML = '';
+      books.forEach(book => {
+        const bookElement = document.createElement('div');
+        bookElement.classList.add('book');
+        bookElement.innerHTML = `
+          <img src="${book.image}" alt="${book.title}">
+          <h3>${book.title}</h3>
+          <p>${book.description}</p>
+          <a href="${book.link_google_play}" target="_blank">Baca di Google Play</a>
+        `;
+        bookListContainer.appendChild(bookElement);
+      });
+    }
+
+    // Memanggil fungsi untuk menampilkan buku
+    fetchBooks();
+  </script>
+</body>
+</html>
