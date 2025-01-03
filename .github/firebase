@@ -1,0 +1,20 @@
+            - nama: Terapkan ke Firebase Hosting - Dengan pin versi Firebase-tools
+  # Anda dapat menyematkan ke komit yang tepat atau versinya.
+  # menggunakan: AurelienLoyer/action-hosting-deploy@fbc5bbeb83621c290d5cbb21650ffb25386979d4
+  penggunaan: AurelienLoyer/action-hosting-deploy@v0
+  dengan:
+    # Rahasia GITHUB_TOKEN
+    repoToken: # opsional
+    # Akun layanan Firebase JSON
+    Akun Layanan firebase:
+    # Berapa lama pratinjau akan ditayangkan? Lihat dokumen saluran pratinjau untuk mengetahui pilihannya
+    berakhir: # opsional, defaultnya 7d
+    # Proyek yang akan di-deploy. Jika Anda membiarkannya kosong, pastikan Anda mencentang file .firebaserc
+    projectId: # opsional
+    # ID saluran yang akan dideploy. Jika Anda membiarkannya kosong, saluran pratinjau dan ID-nya akan dibuat secara otomatis per cabang atau PR.
+    channelId: # opsional
+    # Nama target situs Hosting yang akan di-deploy. Jika Anda membiarkannya kosong, target default atau semua target yang ditetapkan dalam .firebaserc akan di-deploy. Lihat dokumen Hosting tentang [beberapa situs](https://firebase.google.com/docs/hosting/multisites) untuk informasi lebih lanjut tentang target deploy.
+    target: # opsional
+    # Lokasi file firebase.json Anda, relatif terhadap akar direktori Anda
+    entryPoint: # opsional, defaultnya adalah .
+          
